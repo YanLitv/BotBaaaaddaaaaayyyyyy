@@ -20,7 +20,27 @@ namespace ConsoleApp1
 
         private static void BotClient_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e)
         {
-            Console.WriteLine("Badaj!");
+            switch (e.Message.Text)
+            {
+                case "/time":
+                    {
+                        botClient.SendTextMessageAsync(e.Message.Chat.Id, DateTime.Now.ToShortTimeString());
+                        break;
+                    }
+                case "/date":
+                    {
+                        botClient.SendTextMessageAsync(e.Message.Chat.Id, DateTime.Now.ToShortDateString());
+                        break;
+                    }
+                case "/timezone":
+                    {
+                        botClient.SendTextMessageAsync(e.Message.Chat.Id, TimeZone.CurrentTimeZone.StandardName.ToString());
+                        break;
+                    }
+                default:
+                    botClient.SendTextMessageAsync(e.Message.Chat.Id, e.Message.Text);
+                    break;
+            }
         }
     }
 }
