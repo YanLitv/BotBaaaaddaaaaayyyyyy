@@ -37,6 +37,21 @@ namespace ConsoleApp1
                         botClient.SendTextMessageAsync(e.Message.Chat.Id, TimeZone.CurrentTimeZone.StandardName.ToString());
                         break;
                     }
+                case "/image":
+                    {
+                        if (e.Message.Date.Hour >= 4 && e.Message.Date.Hour <= 17)
+                        {
+                           
+                            botClient.SendPhotoAsync(e.Message.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile("https://static5.depositphotos.com/1034598/439/i/450/depositphotos_4395088-stock-photo-full-moon-grey.jpg"));
+                        }
+                        if (e.Message.Date.Hour >= 18 && e.Message.Date.Hour <= 3)
+                        {
+                            botClient.SendPhotoAsync(e.Message.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile("https://zabavnik.club/wp-content/uploads/2018/02/solnce_2_20102733.jpg"));
+                        }
+                        
+
+                        break;
+                    }
                 default:
                     botClient.SendTextMessageAsync(e.Message.Chat.Id, e.Message.Text);
                     break;
